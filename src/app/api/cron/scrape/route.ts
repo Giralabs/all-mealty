@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { prisma } from '../../../../db';
 import { MercadonaScraper } from '../../../../services/scraper/mercadona';
 import { AldiScraper } from '../../../../services/scraper/aldi';
@@ -175,7 +176,7 @@ async function handleScraping(req: NextRequest) {
                 dietTypes: enriched.dietTypes,
                 allergens: enriched.allergens,
                 cookingMethods: enriched.cookingMethods,
-                nutritionalInfo: enriched.nutritionalInfo ?? null,
+                nutritionalInfo: enriched.nutritionalInfo ?? Prisma.DbNull,
                 lastUpdated: new Date()
               }
             });
@@ -190,7 +191,7 @@ async function handleScraping(req: NextRequest) {
                 dietTypes: enriched.dietTypes,
                 allergens: enriched.allergens,
                 cookingMethods: enriched.cookingMethods,
-                nutritionalInfo: enriched.nutritionalInfo ?? null
+                nutritionalInfo: enriched.nutritionalInfo ?? Prisma.DbNull
               }
             });
           }
