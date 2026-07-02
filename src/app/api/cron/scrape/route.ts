@@ -6,6 +6,7 @@ import { AldiScraper } from '../../../../services/scraper/aldi';
 import { DiaScraper } from '../../../../services/scraper/dia';
 import { CarrefourScraper } from '../../../../services/scraper/carrefour';
 import { AlcampoScraper } from '../../../../services/scraper/alcampo';
+import { LidlScraper } from '../../../../services/scraper/lidl';
 import { MatchingService } from '../../../../services/matching.service';
 
 // Matching Service
@@ -18,6 +19,7 @@ const scrapers = {
   dia: new DiaScraper(),
   carrefour: new CarrefourScraper(),
   alcampo: new AlcampoScraper(),
+  lidl: new LidlScraper(),
 };
 
 /**
