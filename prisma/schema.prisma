@@ -64,4 +64,5 @@ enum supermarket {
   dia
   carrefour
   alcampo
+  lidl
 }

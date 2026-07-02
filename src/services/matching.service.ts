@@ -4,7 +4,7 @@ export interface EnrichedProduct {
   name: string;
   price: number;
   imageUrl: string;
-  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo';
+  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo' | 'lidl';
   isFood: boolean;
   dietTypes: string[];
   allergens: string[];

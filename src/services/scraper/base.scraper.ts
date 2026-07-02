@@ -2,12 +2,12 @@ export interface ScrapedProduct {
   name: string;
   price: number;
   imageUrl: string;
-  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo';
+  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo' | 'lidl';
   categoryName: string;
 }
 
 export interface ISupermarketScraper {
-  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo';
+  supermarket: 'mercadona' | 'aldi' | 'dia' | 'carrefour' | 'alcampo' | 'lidl';
 
   /**
    * Fetches the list of all category URLs/identifiers and their names for the supermarket.

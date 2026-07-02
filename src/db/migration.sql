@@ -2,7 +2,7 @@
 DO $$ 
 BEGIN
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'supermarket') THEN
-        CREATE TYPE supermarket AS ENUM ('mercadona', 'aldi', 'dia', 'carrefour', 'alcampo');
+        CREATE TYPE supermarket AS ENUM ('mercadona', 'aldi', 'dia', 'carrefour', 'alcampo', 'lidl');
     END IF;
     IF NOT EXISTS (SELECT 1 FROM pg_type WHERE typname = 'queue_status') THEN
         CREATE TYPE queue_status AS ENUM ('pending', 'processing', 'completed', 'failed');
@@ -44,3 +44,14 @@ CREATE INDEX IF NOT EXISTS mealty_queue_status_supermarket_idx ON mealty_scrapin
 -- Migrations/Updates
 ALTER TABLE mealty_products ADD COLUMN IF NOT EXISTS nutritional_info JSONB;
 
+-- Add lidl to supermarket enum (safe for existing databases)
+DO $$
+BEGIN
+    IF NOT EXISTS (
+        SELECT 1 FROM pg_enum
+        WHERE enumlabel = 'lidl'
+          AND enumtypid = (SELECT oid FROM pg_type WHERE typname = 'supermarket')
+    ) THEN
+        ALTER TYPE supermarket ADD VALUE 'lidl';
+    END IF;
+END $$;
