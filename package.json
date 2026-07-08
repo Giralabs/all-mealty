@@ -1,26 +1,20 @@
 {
-  "name": "all-mealty",
+  "name": "mealty-scraper",
   "version": "1.0.0",
-  "private": true,
+  "description": "Modular web scraper for Mealty supermarket products",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "node index.js",
+    "scrape": "node index.js",
+    "test-local": "node test-local.js",
+    "test-carrefour": "node test-carrefour.js",
+    "playwright-install": "npx playwright install chromium"
   },
   "dependencies": {
-    "@prisma/client": "^6.19.3",
-    "cheerio": "^1.2.0",
-    "drizzle-orm": "^0.45.2",
-    "next": "^15.1.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^20.11.0",
-    "@types/react": "^19.0.2",
-    "@types/react-dom": "^19.0.2",
-    "prisma": "^6.19.3",
-    "typescript": "^5.3.3"
+    "@supabase/supabase-js": "^2.44.0",
+    "dotenv": "^16.4.5",
+    "playwright": "^1.44.0",
+    "playwright-extra": "^4.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2"
   }
 }
