@@ -101,18 +101,15 @@ async function scrapeMercadona() {
 
     console.log(`[Mercadona Scraper] Total subcategories found to crawl: ${subcategoryIds.length}`);
 
-    // If TEST_MODE is active, we only scrape a small subset of subcategories (e.g. 5) to verify execution
-    const isTestRun = process.env.SCRAPER_TEST_MODE !== 'false';
-    const maxSubcategories = isTestRun ? 5 : subcategoryIds.length;
-    
-    console.log(`[Mercadona Scraper] Crawling ${maxSubcategories} subcategories (Test mode: ${isTestRun})...`);
+    const totalCats = subcategoryIds.length;
+    console.log(`[Mercadona Scraper] Crawling all ${totalCats} subcategories...`);
 
     const scrapedProducts = [];
 
     // 1. Gather all basic product information from categories list
-    for (let i = 0; i < maxSubcategories; i++) {
+    for (let i = 0; i < totalCats; i++) {
       const subcat = subcategoryIds[i];
-      console.log(`[Mercadona Scraper] [${i + 1}/${maxSubcategories}] Processing: ${subcat.parentName} > ${subcat.name} (ID: ${subcat.id})`);
+      console.log(`[Mercadona Scraper] [${i + 1}/${totalCats}] Processing: ${subcat.parentName} > ${subcat.name} (ID: ${subcat.id})`);
       
       try {
         const subcatDetail = await page.evaluate(async (id) => {

@@ -136,12 +136,8 @@ async function fetchDetailsFromDetailPage(page, detailUrl) {
 // ── Main scraper ──────────────────────────────────────────────────────────────
 
 async function scrapeCarrefour() {
-  const isTest = process.env.SCRAPER_TEST_MODE !== 'false';
-
-  // Test mode: 2 categories × 2 listing pages ≈ 48 products, EAN for first 20
-  const categoriesToUse = isTest ? FOOD_CATEGORIES.slice(0, 2) : FOOD_CATEGORIES;
-  const maxPagesPerCat  = isTest ? 2 : 5;          // 24 products per page
-  const maxEanFetch     = isTest ? 20 : Infinity;  // product detail pages to visit
+  const categoriesToUse = FOOD_CATEGORIES;
+  const maxPagesPerCat  = 10; // Complete subcategory pagination limit
 
   const browser = await chromium.launch({
     headless: true,
@@ -239,7 +235,7 @@ async function scrapeCarrefour() {
     }
 
     // ── Phase 2: Fetch EAN and details from product detail pages ───────────────────────
-    const toFetch = allProducts.filter(p => p.detail_url).slice(0, maxEanFetch);
+    const toFetch = allProducts.filter(p => p.detail_url);
 
     console.log(`\n[Carrefour] Fetching details from ${toFetch.length} product pages...`);
     let fetched = 0;
